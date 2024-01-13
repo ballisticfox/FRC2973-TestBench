@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 ///SUBSYSTEM IMPORTS///
-//import frc.robot.subsystems.MecanumDriveSubsystem;
 import frc.robot.subsystems.LauncherDriveSubsystem;
 
 /**xw
@@ -43,25 +42,6 @@ public class RobotContainer {
   {
     // Configure the trigger bindings
     configureBindings();
-
-
-    /// DEFAULT COMMANDS ///
-    /*
-     *  m_subsystemExample.setDefaultCommand(
-     *    Commands.run(() -> m_subsystemExample.exampleCommand(args*), m_subsystemExample));
-     */
-
-    /*
-    m_mecanumDriveSubsystem.setDefaultCommand(
-      Commands.run(
-        () ->
-            m_mecanumDriveSubsystem.driveCartesian(
-            m_driverController.getLeftY(), 
-            m_driverController.getLeftX(),
-            m_driverController.getRightX()),
-        m_mecanumDriveSubsystem));
-    */
-
   }
 
 
