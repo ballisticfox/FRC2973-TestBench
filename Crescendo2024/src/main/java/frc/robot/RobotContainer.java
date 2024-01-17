@@ -4,19 +4,17 @@
 
 package frc.robot;
 
-import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-
-///SUBSYSTEM IMPORTS///
+import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.Autos;
+import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LauncherDriveSubsystem;
 
-/**xw
- * This class is where the bulk of the robot should be declared. Since Command-based is a
+/**
+ * xw This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
@@ -24,7 +22,8 @@ import frc.robot.subsystems.LauncherDriveSubsystem;
 public class RobotContainer {
 
   /// SUBSYSTEMS ///
-  //Remmber these are members of the class meaning they should start with the m_ prefix and end with the Subsystem suffix
+  // Remmber these are members of the class meaning they should start with the m_ prefix and end
+  // with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final LauncherDriveSubsystem m_launcherDriveSubsystem = new LauncherDriveSubsystem();
 
@@ -33,18 +32,11 @@ public class RobotContainer {
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
-
-
-
-  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() 
-  {
+  public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
   }
-
-
 
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
@@ -55,27 +47,28 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureBindings() 
-  {
+  private void configureBindings() {
     /// BOUND COMMANDS ///
     /*
      *     Continuous Command
      *     m_driverController.y().onTrue(new ExampleCommand(args*));
-     * 
+     *
      *     Single Input Command / Do not use a Command class
      *     m_driverController.y().onTrue(Commands.runOnce(() -> m_subsystemExample.exampleMethod(), m_subsystemExample));
      */
 
+    // Run Motors on (A) push
+    m_driverController
+        .a()
+        .onTrue(
+            Commands.runOnce(() -> m_launcherDriveSubsystem.RunMotors(), m_launcherDriveSubsystem));
 
-
-    //Run Motors on (A) push
-    m_driverController.a().onTrue(Commands.runOnce(() -> m_launcherDriveSubsystem.RunMotors(), m_launcherDriveSubsystem));
-
-    //Stop Motors on (B) push
-    m_driverController.b().onTrue(Commands.runOnce(() -> m_launcherDriveSubsystem.StopMotors(), m_launcherDriveSubsystem));
-
-
-
+    // Stop Motors on (B) push
+    m_driverController
+        .b()
+        .onTrue(
+            Commands.runOnce(
+                () -> m_launcherDriveSubsystem.StopMotors(), m_launcherDriveSubsystem));
   }
 
   /**
