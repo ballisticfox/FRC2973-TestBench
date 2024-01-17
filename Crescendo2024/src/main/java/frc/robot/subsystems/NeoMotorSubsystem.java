@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class NeoMotorSubsystem extends SubsystemBase {
 
   // Constants
-  private static final int DEVICE_ID_MOTOR1 = 1; // Set the device ID for the first motor
-  private static final int DEVICE_ID_MOTOR2 = 2; // Set the device ID for the second motor
+  private static final int DEVICE_ID_MOTOR1 = 4; // Set the device ID for the first motor
+  private static final int DEVICE_ID_MOTOR2 = 7; // Set the device ID for the second motor
 
   // Motor Controllers
   private final CANSparkMax motor1;
@@ -70,6 +70,12 @@ public class NeoMotorSubsystem extends SubsystemBase {
   // Example usage to set motors to 300 RPM
   public void setMotorsTo300RPM() {
     setMotorRPM(300);
+  }
+
+  // Method to stop all motors
+  public void stopMotors() {
+    motor1.set(0);
+    motor2.set(0);
   }
 
   @Override

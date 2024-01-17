@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.LauncherDriveSubsystem;
+import frc.robot.subsystems.NeoMotorSubsystem;
 
 /**
  * xw This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -25,7 +25,7 @@ public class RobotContainer {
   // Remmber these are members of the class meaning they should start with the m_ prefix and end
   // with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final LauncherDriveSubsystem m_launcherDriveSubsystem = new LauncherDriveSubsystem();
+  private final NeoMotorSubsystem m_neoMotorSubsystem = new NeoMotorSubsystem();
 
   /// CONTROLLERS ///
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -61,14 +61,12 @@ public class RobotContainer {
     m_driverController
         .a()
         .onTrue(
-            Commands.runOnce(() -> m_launcherDriveSubsystem.RunMotors(), m_launcherDriveSubsystem));
+            Commands.runOnce(() -> m_neoMotorSubsystem.setMotorsTo300RPM(), m_neoMotorSubsystem));
 
     // Stop Motors on (B) push
     m_driverController
         .b()
-        .onTrue(
-            Commands.runOnce(
-                () -> m_launcherDriveSubsystem.StopMotors(), m_launcherDriveSubsystem));
+        .onTrue(Commands.runOnce(() -> m_neoMotorSubsystem.stopMotors(), m_neoMotorSubsystem));
   }
 
   /**
