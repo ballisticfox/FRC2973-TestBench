@@ -55,6 +55,12 @@ public class AlignmentApproachCommand extends Command {
         || (calculateDistance(m_cameraSubsystem.getYOffset()) <= FINAL_TARGET_DISTANCE_INCHES);
   }
 
+  @Override
+  public void end(boolean interruped) {
+    m_driveSubsystem.driveArcade(0.0, 0.0);
+    m_timer.stop();
+  }
+
   // TODO: re-factor these hard-coded values to a more logical place
   private double calculateDistance(double yOffset) {
     return (LimelightCameraSubsystem.HEIGHT_OF_TARGET_INCHES
