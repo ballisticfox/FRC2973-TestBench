@@ -54,20 +54,6 @@ public class RobotContainer {
                     m_driverController.getLeftX(),
                     m_driverController.getRightX()),
             m_mecanumDriveSubsystem));
-
-    // m_tankDriveSubsystem.setDefaultCommand(
-    //     Commands.run(
-    //         () ->
-    //             m_tankDriveSubsystem.driveArcade(
-    //                 m_driverController.getLeftY(), m_driverController.getLeftX()),
-    //         m_tankDriveSubsystem));
-
-    // m_tankDriveSubsystem.setDefaultCommand(
-    //     Commands.run(
-    //         () ->
-    //             m_tankDriveSubsystem.driveCurvature(
-    //                 m_driverController.getLeftY(), m_driverController.getRightX()),
-    //         m_tankDriveSubsystem));
   }
 
   /**
