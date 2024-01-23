@@ -13,7 +13,7 @@ import frc.robot.commands.AlignmentApproachCommand;
 import frc.robot.commands.Autos;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimelightCameraSubsystem;
-import frc.robot.subsystems.TankDriveSubsystem;
+import frc.robot.subsystems.MecanumDriveSubsystem;
 
 /**
  * xw This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,7 +27,7 @@ public class RobotContainer {
   // Remmber these are members of the class meaning they should start with the m_ prefix and end
   // with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final TankDriveSubsystem m_tankDriveSubsystem = new TankDriveSubsystem();
+  private final MecanumDriveSubsystem m_mecanumDriveSubsystem = new MecanumDriveSubsystem();
   private final LimelightCameraSubsystem m_cameraSubsystem = new LimelightCameraSubsystem();
 
   /// CONTROLLERS ///
@@ -46,12 +46,14 @@ public class RobotContainer {
      *    Commands.run(() -> m_subsystemExample.exampleCommand(args*), m_subsystemExample));
      */
 
-    m_tankDriveSubsystem.setDefaultCommand(
+    m_mecanumDriveSubsystem.setDefaultCommand(
         Commands.run(
             () ->
-                m_tankDriveSubsystem.driveTank(
-                    m_driverController.getLeftY(), m_driverController.getRightY()),
-            m_tankDriveSubsystem));
+                m_mecanumDriveSubsystem.driveCartesian(
+                    m_driverController.getLeftY(),
+                    m_driverController.getLeftX(),
+                    m_driverController.getRightX()),
+            m_mecanumDriveSubsystem));
 
     // m_tankDriveSubsystem.setDefaultCommand(
     //     Commands.run(
@@ -89,7 +91,7 @@ public class RobotContainer {
 
     m_driverController
         .a()
-        .onTrue(new AlignmentApproachCommand(m_tankDriveSubsystem, m_cameraSubsystem));
+        .onTrue(new AlignmentApproachCommand(m_mecanumDriveSubsystem, m_cameraSubsystem));
   }
 
   /**

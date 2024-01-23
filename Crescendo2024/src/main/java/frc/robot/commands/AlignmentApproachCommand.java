@@ -3,10 +3,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.LimelightCameraSubsystem;
-import frc.robot.subsystems.TankDriveSubsystem;
+import frc.robot.subsystems.MecanumDriveSubsystem;
 
 public class AlignmentApproachCommand extends Command {
-  private final TankDriveSubsystem m_driveSubsystem;
+  private final MecanumDriveSubsystem m_driveSubsystem;
   private final LimelightCameraSubsystem m_cameraSubsystem;
   private final Timer m_timer = new Timer();
   private static final double MAX_RUN_TIME_SECONDS = 5;
@@ -15,7 +15,7 @@ public class AlignmentApproachCommand extends Command {
   private static final double APPROACH_SPEED = 0.5;
 
   public AlignmentApproachCommand(
-      TankDriveSubsystem driveSubsystem, LimelightCameraSubsystem cameraSubsystem) {
+      MecanumDriveSubsystem driveSubsystem, LimelightCameraSubsystem cameraSubsystem) {
     m_driveSubsystem = driveSubsystem;
     m_cameraSubsystem = cameraSubsystem;
 
@@ -45,7 +45,7 @@ public class AlignmentApproachCommand extends Command {
         alignmentSpeed = APPROACH_SPEED;
       }
 
-      m_driveSubsystem.driveArcade(alignmentSpeed, alignmentAdjustment);
+      m_driveSubsystem.driveCartesian(alignmentSpeed, 0.0, alignmentAdjustment);
     }
   }
 
@@ -53,6 +53,12 @@ public class AlignmentApproachCommand extends Command {
   public boolean isFinished() {
     return m_timer.hasElapsed(MAX_RUN_TIME_SECONDS)
         || (calculateDistance(m_cameraSubsystem.getYOffset()) <= FINAL_TARGET_DISTANCE_INCHES);
+  }
+
+  @Override
+  public void end(boolean interrupted) {
+    m_driveSubsystem.driveCartesian(0.0, 0.0, 0.0);
+    m_timer.stop();
   }
 
   // TODO: re-factor these hard-coded values to a more logical place
