@@ -14,7 +14,7 @@ public class LimelightCameraSubsystem extends SubsystemBase {
   private final NetworkTableEntry m_ta = m_limelightTable.getEntry("ta");
   private final NetworkTableEntry m_tv = m_limelightTable.getEntry("tv");
 
-  public static final double HEIGHT_OF_TARGET_INCHES = 24;
+  public static final double HEIGHT_OF_TARGET_INCHES = 32;
   public static final double HEIGHT_OF_CAMERA_INCHES = 16;
   public static final double ANGLE_BETWEEN_LEVEL_PLANE_AND_CAMERA = 0;
 
