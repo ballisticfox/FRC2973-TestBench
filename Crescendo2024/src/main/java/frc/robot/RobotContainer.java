@@ -36,6 +36,11 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+
+    m_neoMotorSubsystem.setDefaultCommand(
+        Commands.run(
+            () -> m_neoMotorSubsystem.manualMotorControl(m_driverController.getRightY()),
+            m_neoMotorSubsystem));
   }
 
   /**
@@ -58,15 +63,15 @@ public class RobotContainer {
      */
 
     // Run Motors on (A) push
-    m_driverController
-        .a()
-        .onTrue(
-            Commands.runOnce(() -> m_neoMotorSubsystem.setMotorsTo300RPM(), m_neoMotorSubsystem));
+    // m_driverController
+    //     .a()
+    //     .onTrue(
+    //         Commands.runOnce(() -> m_neoMotorSubsystem.setMotorTo300RPM(), m_neoMotorSubsystem));
 
-    // Stop Motors on (B) push
-    m_driverController
-        .b()
-        .onTrue(Commands.runOnce(() -> m_neoMotorSubsystem.stopMotors(), m_neoMotorSubsystem));
+    // // Stop Motors on (B) push
+    // m_driverController
+    //     .b()
+    //     .onTrue(Commands.runOnce(() -> m_neoMotorSubsystem.stopMotors(), m_neoMotorSubsystem));
   }
 
   /**
