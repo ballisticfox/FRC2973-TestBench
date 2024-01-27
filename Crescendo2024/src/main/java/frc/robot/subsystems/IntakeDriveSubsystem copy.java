@@ -3,12 +3,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class LauncherDriveSubsystem extends SubsystemBase
+public class IntakeDriveSubsystem extends SubsystemBase
 {
 
     private PWMSparkMax motorLeft;
     private PWMSparkMax motorRight;
-    private final int motorChannel = 0;
+    private final int motorChannel = 1;
     
 
 
@@ -28,4 +28,5 @@ public class LauncherDriveSubsystem extends SubsystemBase
     {
         motor.stopMotor();
     }
+}
 }
