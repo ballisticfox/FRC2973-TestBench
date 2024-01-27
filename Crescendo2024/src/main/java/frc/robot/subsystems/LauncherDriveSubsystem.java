@@ -6,9 +6,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class LauncherDriveSubsystem extends SubsystemBase
 {
 
-    private PWMSparkMax motorLeft;
-    private PWMSparkMax motorRight;
-    private final int motorChannel = 0;
+    private PWMSparkMax motor;
+    private final int motorChannel = 8;
     
 
 

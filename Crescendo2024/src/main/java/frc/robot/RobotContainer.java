@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeDriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -27,6 +28,7 @@ public class RobotContainer {
   //Remmber these are members of the class meaning they should start with the m_ prefix and end with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final LauncherDriveSubsystem m_launcherDriveSubsystem = new LauncherDriveSubsystem();
+  private final IntakeDriveSubsystem m_intakeDriveSubsystem = new IntakeDriveSubsystem();
 
   /// CONTROLLERS ///
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -68,12 +70,17 @@ public class RobotContainer {
 
 
 
-    //Run Motors on (A) push
+    //Run Launcher Motor on (A) push
     m_driverController.a().onTrue(Commands.runOnce(() -> m_launcherDriveSubsystem.RunMotors(), m_launcherDriveSubsystem));
 
-    //Stop Motors on (B) push
+    //Stop Launcher Motors on (B) push
     m_driverController.b().onTrue(Commands.runOnce(() -> m_launcherDriveSubsystem.StopMotors(), m_launcherDriveSubsystem));
 
+    //Run Intake Motor on (X) push
+    m_driverController.x().onTrue(Commands.runOnce(() -> m_intakeDriveSubsystem.RunMotors(), m_intakeDriveSubsystem));
+
+    //Stop Intake Motor on (Y) push
+    m_driverController.y().onTrue(Commands.runOnce(() -> m_intakeDriveSubsystem.StopMotors(), m_intakeDriveSubsystem));
 
 
   }

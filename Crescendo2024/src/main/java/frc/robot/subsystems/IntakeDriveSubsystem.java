@@ -6,13 +6,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class IntakeDriveSubsystem extends SubsystemBase
 {
 
-    private PWMSparkMax motorLeft;
-    private PWMSparkMax motorRight;
-    private final int motorChannel = 1;
+    private PWMSparkMax motor;
+    private final int motorChannel = 9;
     
 
 
-    public LauncherDriveSubsystem()
+    public IntakeDriveSubsystem()
     {
         motor = new PWMSparkMax(motorChannel);
 
@@ -28,5 +27,4 @@ public class IntakeDriveSubsystem extends SubsystemBase
     {
         motor.stopMotor();
     }
-}
 }
