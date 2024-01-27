@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AlignmentApproachCommand;
 import frc.robot.commands.Autos;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LimelightCameraSubsystem;
 import frc.robot.subsystems.TankDriveSubsystem;
 
@@ -26,7 +25,6 @@ public class RobotContainer {
   /// SUBSYSTEMS ///
   // Remmber these are members of the class meaning they should start with the m_ prefix and end
   // with the Subsystem suffix
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final TankDriveSubsystem m_tankDriveSubsystem = new TankDriveSubsystem();
   private final LimelightCameraSubsystem m_cameraSubsystem = new LimelightCameraSubsystem();
 
@@ -97,8 +95,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
-  }
+  // public Command getAutonomousCommand() {
+  //   // An example command will be run in autonomous
+  //   return Autos.exampleAuto(m_exampleSubsystem);
+  // }
 }
