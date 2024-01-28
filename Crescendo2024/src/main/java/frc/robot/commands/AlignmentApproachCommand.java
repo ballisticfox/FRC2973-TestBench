@@ -5,13 +5,19 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.LimelightCameraSubsystem;
 import frc.robot.subsystems.TankDriveSubsystem;
 
-public class AlignmentApproachCommand extends Command {
+public class AlignmentApproachCommand extends Command 
+{
+
   private final TankDriveSubsystem m_driveSubsystem;
   private final LimelightCameraSubsystem m_cameraSubsystem;
+
   private final Timer m_timer = new Timer();
   private static final double MAX_RUN_TIME_SECONDS = 5;
+
+
+  //TODO: Refactor the way the step size is created, otherwise you end up with Zeno's Paradox
+  private static final double STEP_SIZE = 0.1;
   private static final double FINAL_TARGET_DISTANCE_INCHES = 12;
-  private static final double ALIGNMENT_TOLERANCE_DEGREES = 3;
   private static final double APPROACH_SPEED = 0.5;
 
   public AlignmentApproachCommand(
@@ -23,29 +29,55 @@ public class AlignmentApproachCommand extends Command {
   }
 
   @Override
-  public void initialize() {
+  public void initialize() 
+  {
     m_timer.reset();
     m_timer.start();
   }
 
   @Override
-  public void execute() {
-    if (m_cameraSubsystem.isTargetVisible()) {
+  public void execute() 
+  {
+    if (m_cameraSubsystem.isTargetVisible()) 
+    {
       double xOffset = m_cameraSubsystem.getXOffset();
       double yOffset = m_cameraSubsystem.getYOffset();
+
+      //TODO: Write zRotation method for limelight camera subsystem
+      double tagZRotation = 0.0;
+
       double distance = calculateDistance(yOffset);
 
-      double alignmentAdjustment = 0.0;
-      if (Math.abs(xOffset) > ALIGNMENT_TOLERANCE_DEGREES) {
-        alignmentAdjustment = xOffset / 100;
+      if (distance > FINAL_TARGET_DISTANCE_INCHES)
+      {
+        double tagXPosition = distance * Math.cos(xOffset);
+        double tagYPosition = distance * Math.sin(yOffset);
+
+
+
+        double interceptDistance = 0;
+
+        //If the tag's rotation ends up being 0 then we'll get a div 0 error.
+        //Luckily, we should just be able to set the intercept distance to the xPosition of the aprilTag in this case
+        try
+        {
+          interceptDistance = ( tagXPosition * Math.tan(tagZRotation)-tagYPosition) / ( -1 * Math.tan(tagZRotation) );
+        }
+        catch (Exception e)
+        {
+          interceptDistance = tagXPosition;
+        }
+
+        double trajectoryPointX = ((-2 * STEP_SIZE * interceptDistance) + (2 * interceptDistance) + (STEP_SIZE*tagXPosition)) * STEP_SIZE;
+        double trajectoryPointY = (STEP_SIZE*STEP_SIZE * tagYPosition);
+
+        double angleOfCorrection = Math.atan(trajectoryPointY/trajectoryPointX);
+
+        //TODO: Some sort of method to convert the angle of correction and speed to useable motor inputs
+
+        // m_driveSubsystem.driveArcade(alignmentSpeed, alignmentAdjustment);
       }
 
-      double alignmentSpeed = 0.0;
-      if (distance > FINAL_TARGET_DISTANCE_INCHES) {
-        alignmentSpeed = APPROACH_SPEED;
-      }
-
-      m_driveSubsystem.driveArcade(alignmentSpeed, alignmentAdjustment);
     }
   }
 
