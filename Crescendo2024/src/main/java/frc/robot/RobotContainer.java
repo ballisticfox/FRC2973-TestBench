@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 ///SUBSYSTEM IMPORTS///
-import frc.robot.subsystems.LauncherDriveSubsystem;
+import frc.robot.subsystems.ShooterDriveSubsystem;
 
 /**xw
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,8 +27,7 @@ public class RobotContainer {
   /// SUBSYSTEMS ///
   //Remmber these are members of the class meaning they should start with the m_ prefix and end with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final LauncherDriveSubsystem m_launcherDriveSubsystem = new LauncherDriveSubsystem();
-  private final IntakeDriveSubsystem m_intakeDriveSubsystem = new IntakeDriveSubsystem();
+  private final ShooterDriveSubsystem m_ShooterDriveSubsystem = new ShooterDriveSubsystem();
 
   /// CONTROLLERS ///
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -71,17 +70,13 @@ public class RobotContainer {
 
 
     //Run Launcher Motor on (A) push
-    m_driverController.a().onTrue(Commands.runOnce(() -> m_launcherDriveSubsystem.RunMotors(), m_launcherDriveSubsystem));
-
-    //Stop Launcher Motors on (B) push
-    m_driverController.b().onTrue(Commands.runOnce(() -> m_launcherDriveSubsystem.StopMotors(), m_launcherDriveSubsystem));
+    m_driverController.a().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunShooter(), m_ShooterDriveSubsystem));
 
     //Run Intake Motor on (X) push
-    m_driverController.x().onTrue(Commands.runOnce(() -> m_intakeDriveSubsystem.RunMotors(), m_intakeDriveSubsystem));
+    m_driverController.x().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunIntake(), m_ShooterDriveSubsystem));
 
-    //Stop Intake Motor on (Y) push
-    m_driverController.y().onTrue(Commands.runOnce(() -> m_intakeDriveSubsystem.StopMotors(), m_intakeDriveSubsystem));
-
+    //Stop all Motors on (B) push
+    m_driverController.b().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.StopMotors(), m_ShooterDriveSubsystem));
 
   }
 
