@@ -14,17 +14,45 @@ public class LimelightCameraSubsystem extends SubsystemBase {
   private final NetworkTableEntry m_ta = m_limelightTable.getEntry("ta");
   private final NetworkTableEntry m_tv = m_limelightTable.getEntry("tv");
 
+  private final NetworkTableEntry m_TargetPoseRS = m_limelightTable.getEntry("targetpose_robotspace");
+
+
+
   public static final double HEIGHT_OF_TARGET_INCHES = 32;
   public static final double HEIGHT_OF_CAMERA_INCHES = 16;
   public static final double ANGLE_BETWEEN_LEVEL_PLANE_AND_CAMERA = 0;
 
-  public double getXOffset() {
+  public double getXAngleOffset() {
     return m_tx.getDouble(0.0);
   }
 
-  public double getYOffset() {
+  public double getYAngleOffset() {
     return m_ty.getDouble(0.0);
   }
+
+  public double getXDistOffset() {
+    return m_TargetPoseRS.getDoubleArray(new double[6])[0];
+  }
+
+  public double getYDistOffset() {
+    return m_TargetPoseRS.getDoubleArray(new double[6])[1];
+  }
+  public double getZDistOffset() {
+    return m_TargetPoseRS.getDoubleArray(new double[6])[2];
+  }
+
+  public double getXRotation() {
+    return m_TargetPoseRS.getDoubleArray(new double[6])[3];
+  }
+
+  public double getYRotaion() {
+    return m_TargetPoseRS.getDoubleArray(new double[6])[4];
+  }
+  public double getZRotation() {
+    return m_TargetPoseRS.getDoubleArray(new double[6])[5];
+  }
+
+
 
   public double getVisualArea() {
     return m_ta.getDouble(0.0);
