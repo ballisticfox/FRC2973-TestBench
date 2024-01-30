@@ -42,9 +42,6 @@ public class AlignmentApproachCommand extends Command
     {
       double tagXPosition = m_cameraSubsystem.getXDistOffset();
       double tagYPosition = m_cameraSubsystem.getYDistOffset();
-      double tagZPosition = m_cameraSubsystem.getZDistOffset();
-
-      //TODO: Write zRotation method for limelight camera subsystem
       double tagZRotation = m_cameraSubsystem.getZRotation();
 
       double interceptDistance = 0;

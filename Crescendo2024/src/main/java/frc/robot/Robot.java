@@ -28,8 +28,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    SmartDashboard.putString("Software Version:", "Mecanum Drive Test Bench");
-    System.out.println("Software Version: Mecanum Drive Test Bench");
+    SmartDashboard.putString("Software Version:", "LimeLight Auto Test Bench");
+    System.out.println("Software Version: LimeLight Auto Test Bench");
     m_robotContainer = new RobotContainer();
   }
 
