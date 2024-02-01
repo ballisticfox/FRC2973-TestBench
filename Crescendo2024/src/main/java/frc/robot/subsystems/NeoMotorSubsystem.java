@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class NeoMotorSubsystem extends SubsystemBase {
 
   // Constants
-  private static final int DEVICE_ID_MOTOR2 = 7; // Set the device ID for the second motor
+  private static final int DEVICE_ID_MOTOR2 = 4; // Set the device ID for the second motor
 
   // Motor Controllers
   private final CANSparkMax m_motor;
@@ -37,7 +37,7 @@ public class NeoMotorSubsystem extends SubsystemBase {
     m_encoder = m_motor.getEncoder();
 
     // PID coefficients
-    kP = 6e-5;
+    kP = 6e-4;
     kI = 0;
     kD = 0;
     kIz = 0;
