@@ -18,7 +18,7 @@ public class AlignmentApproachCommand extends Command
   //TODO: Refactor the way the step size is created, otherwise you end up with Zeno's Paradox
   private static final double STEP_SIZE = 0.1;
   private static final double FINAL_TARGET_DISTANCE_INCHES = 12;
-  private static final double APPROACH_SPEED = 0.5;
+  //private static final double APPROACH_SPEED = 0.5;
 
   public AlignmentApproachCommand(
       TankDriveSubsystem driveSubsystem, LimelightCameraSubsystem cameraSubsystem) {
@@ -85,8 +85,7 @@ public class AlignmentApproachCommand extends Command
   private double calculateDistance()
   {
     double distance  = Math.sqrt(m_cameraSubsystem.getXDistOffset()*m_cameraSubsystem.getXDistOffset()+
-                                 m_cameraSubsystem.getYDistOffset()*m_cameraSubsystem.getYDistOffset()+
-                                 m_cameraSubsystem.getZDistOffset()*m_cameraSubsystem.getZDistOffset());
+                                 m_cameraSubsystem.getYDistOffset()*m_cameraSubsystem.getYDistOffset());
 
 
     return distance;
