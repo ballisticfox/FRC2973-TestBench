@@ -43,19 +43,19 @@ public class RobotContainer {
      *    Commands.run(() -> m_subsystemExample.exampleCommand(args*), m_subsystemExample));
      */
 
-    m_tankDriveSubsystem.setDefaultCommand(
-        Commands.run(
-            () ->
-                m_tankDriveSubsystem.driveTank(
-                    m_driverController.getLeftY(), m_driverController.getRightY()),
-            m_tankDriveSubsystem));
-
     // m_tankDriveSubsystem.setDefaultCommand(
     //     Commands.run(
     //         () ->
-    //             m_tankDriveSubsystem.driveArcade(
-    //                 m_driverController.getLeftY(), m_driverController.getLeftX()),
+    //             m_tankDriveSubsystem.driveTank(
+    //                 m_driverController.getLeftY(), m_driverController.getRightY()),
     //         m_tankDriveSubsystem));
+
+    m_tankDriveSubsystem.setDefaultCommand(
+        Commands.run(
+            () ->
+                m_tankDriveSubsystem.driveArcade(
+                    m_driverController.getLeftY(), m_driverController.getRightX()),
+            m_tankDriveSubsystem));
 
     // m_tankDriveSubsystem.setDefaultCommand(
     //     Commands.run(

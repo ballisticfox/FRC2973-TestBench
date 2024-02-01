@@ -14,12 +14,12 @@ public class TankDriveSubsystem extends SubsystemBase {
   public TankDriveSubsystem() {
     m_left1 = new Spark(0);
     m_left2 = new Spark(1);
-    m_right1 = new Spark(2);
-    m_right2 = new Spark(3);
+    m_right1 = new Spark(3);
+    m_right2 = new Spark(2);
 
     // Invert your motor inputs here
-    m_left1.setInverted(true);
-    m_left2.setInverted(true);
+    m_right1.setInverted(true);
+    // m_left2.setInverted(true);
 
     // Set followers
     m_left1.addFollower(m_left2);
@@ -33,7 +33,7 @@ public class TankDriveSubsystem extends SubsystemBase {
   }
 
   public void driveArcade(double speed, double rotation) {
-    m_drive.arcadeDrive(speed, rotation);
+    m_drive.arcadeDrive(-speed*0.5, -rotation*0.5);
   }
 
   public void driveCurvature(double speed, double curvature) {
