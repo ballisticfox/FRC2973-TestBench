@@ -37,14 +37,16 @@ public class NeoMotorSubsystem extends SubsystemBase {
     m_encoder = m_motor.getEncoder();
 
     // PID coefficients
-    kP = 6e-4;
+    kP = 0;
     kI = 0;
     kD = 0;
     kIz = 0;
-    kFF = 0.000015;
+    kFF = 0.000215;
     kMaxOutput = 1;
     kMinOutput = -1;
-    maxRPM = 100;
+    maxRPM = 150;
+
+    //These values work for 150RPM - Rigel 2/3/24
 
     // Set PID coefficients
     m_pidController.setP(kP);
@@ -76,8 +78,8 @@ public class NeoMotorSubsystem extends SubsystemBase {
   }
 
   // Example usage to set motors to 300 RPM
-  public void setMotorTo300RPM() {
-    setMotorRPM(300);
+  public void setMotorTo150RPM() {
+    setMotorRPM(150);
   }
 
   public void manualMotorControl(double stickInput) {
