@@ -73,7 +73,7 @@ public class AlignmentApproachCommand extends Command {
   @Override
   public boolean isFinished() {
     return m_timer.hasElapsed(MAX_RUN_TIME_SECONDS)
-        || (calculateDistance() <= FINAL_TARGET_DISTANCE_INCHES);
+        || (m_cameraSubsystem.getDistance2D() <= FINAL_TARGET_DISTANCE_INCHES);
   }
 
   @Override
@@ -83,12 +83,5 @@ public class AlignmentApproachCommand extends Command {
   }
 
   // TODO: re-factor these hard-coded values to a more logical place
-  private double calculateDistance() {
-    double distance =
-        Math.sqrt(
-            m_cameraSubsystem.getXDistOffset() * m_cameraSubsystem.getXDistOffset()
-                + m_cameraSubsystem.getYDistOffset() * m_cameraSubsystem.getYDistOffset());
 
-    return distance;
-  }
 }

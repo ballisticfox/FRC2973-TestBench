@@ -62,14 +62,34 @@ public class LimelightCameraSubsystem extends SubsystemBase {
     return m_tv.getDouble(0) == 1;
   }
 
+  public double getDistance2D() {
+    double distance =
+        Math.sqrt(getXDistOffset() * getXDistOffset() + getZDistOffset() * getZDistOffset());
+
+    return distance;
+  }
+
+  public double getDistance3D() {
+    double distance =
+        Math.sqrt(
+            getXDistOffset() * getXDistOffset()
+                + getYDistOffset() * getYDistOffset()
+                + getZDistOffset() * getZDistOffset());
+    return distance;
+  }
+
   @Override
   public void periodic() {
-    SmartDashboard.putString("X Distance Offset: ", getXDistOffset() + "");
-    SmartDashboard.putString("Y Distance Offset: ", getYDistOffset() + "");
-    SmartDashboard.putString("Z Distance Offset: ", getZDistOffset() + "");
+    SmartDashboard.putBoolean("Is Visible", isTargetVisible());
+    SmartDashboard.putNumber("X Distance Offset: ", getXDistOffset());
+    SmartDashboard.putNumber("Y Distance Offset: ", getYDistOffset());
+    SmartDashboard.putNumber("Z Distance Offset: ", getZDistOffset());
 
-    SmartDashboard.putString("X Angle Offset: ", getXRotation() + "");
-    SmartDashboard.putString("Y Angle Offset: ", getYRotation() + "");
-    SmartDashboard.putString("Z Angle Offset: ", getZRotation() + "");
+    SmartDashboard.putNumber("X Angle Offset: ", getXRotation());
+    SmartDashboard.putNumber("Y Angle Offset: ", getYRotation());
+    SmartDashboard.putNumber("Z Angle Offset: ", getZRotation());
+
+    SmartDashboard.putNumber("Distance 2D", getDistance2D());
+    SmartDashboard.putNumber("Distance 3D", getDistance3D());
   }
 }
