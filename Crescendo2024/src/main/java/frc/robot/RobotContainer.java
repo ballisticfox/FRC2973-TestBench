@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.LEDBlinkinSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -28,6 +29,7 @@ public class RobotContainer {
   //Remmber these are members of the class meaning they should start with the m_ prefix and end with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final LauncherDriveSubsystem m_launcherDriveSubsystem = new LauncherDriveSubsystem();
+  private final LEDBlinkinSubsystem m_LedBlinkinSubsystem = new LEDBlinkinSubsystem();
 
   /// CONTROLLERS ///
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -94,7 +96,8 @@ public class RobotContainer {
     //Stop Motors on (B) push
     m_driverController.b().onTrue(Commands.runOnce(() -> m_launcherDriveSubsystem.StopMotors(), m_launcherDriveSubsystem));
 
-
+    //Enable LEDs)
+    m_driverController.x().onTrue(Commands.runOnce(() -> m_LedBlinkinSubsystem.ledStrip(), m_LedBlinkinSubsystem));
 
   }
 
