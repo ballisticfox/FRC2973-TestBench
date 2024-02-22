@@ -23,7 +23,7 @@ public class ShooterDriveSubsystem extends SubsystemBase
     public void RunIntake()
     {
         rollerMotor.set(intakeSpeed);
-        shooterMotor.set(-1 * shooterSpeed);
+        shooterMotor.set(shooterSpeed);
     }
     
     public void RunShooter()
