@@ -5,9 +5,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterDriveSubsystem extends SubsystemBase
 {
+    private PWMSparkMax shooterMotorBack;
     private PWMSparkMax shooterMotor;
     private PWMSparkMax rollerMotor;
 
+    private final int shooterMotorBackChannel = 7;
     private final int shooterMotorChannel = 8;
     private final int rollerMotorChannel = 9;
 
@@ -17,6 +19,7 @@ public class ShooterDriveSubsystem extends SubsystemBase
     public ShooterDriveSubsystem()
     {
         shooterMotor = new PWMSparkMax(shooterMotorChannel);
+        shooterMotorBack = new PWMSparkMax(shooterMotorBackChannel);
         rollerMotor = new PWMSparkMax(rollerMotorChannel);
     }
 
@@ -24,15 +27,18 @@ public class ShooterDriveSubsystem extends SubsystemBase
     {
         rollerMotor.set(intakeSpeed);
         shooterMotor.set(shooterSpeed);
+        shooterMotorBack.set(shooterSpeed);
     }
     
     public void RunShooter()
     {
-        shooterMotor.set(intakeSpeed);
+        shooterMotor.set(-1 * intakeSpeed);
+        shooterMotorBack.set(-1 * shooterSpeed);
     }
 
     public void StopMotors()
     {
+        shooterMotorBack.stopMotor();
         shooterMotor.stopMotor();
         rollerMotor.stopMotor();
     }
