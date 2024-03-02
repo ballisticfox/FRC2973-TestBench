@@ -91,7 +91,7 @@ public class RobotContainer {
     m_driverController.leftTrigger().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.StopMotors(), m_ShooterDriveSubsystem));
 
     //Stop all Motors on (Right Trigger) push
-    m_driverController.rightTrigger().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.StopMotors(), m_ShooterDriveSubsystem));
+    m_driverController.rightTrigger().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunIntakeOut(), m_ShooterDriveSubsystem));
 
 
   }
