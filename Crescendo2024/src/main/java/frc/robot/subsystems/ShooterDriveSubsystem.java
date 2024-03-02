@@ -23,17 +23,36 @@ public class ShooterDriveSubsystem extends SubsystemBase
         rollerMotor = new PWMSparkMax(rollerMotorChannel);
     }
 
-    public void RunIntake()
+    public void RunIntake20()
     {
-        rollerMotor.set(intakeSpeed);
-        shooterMotor.set(shooterSpeed);
-        shooterMotorBack.set(shooterSpeed);
+        rollerMotor.set(intakeSpeed * 0.2);
+    }
+
+    public void RunIntake40()
+    {
+        rollerMotor.set(intakeSpeed * 0.4);
+    }
+
+    public void RunIntake60()
+    {
+        rollerMotor.set(intakeSpeed * 0.6);
     }
     
-    public void RunShooter()
+    public void RunIntake80()
+    {
+        rollerMotor.set(intakeSpeed * 0.8);
+    }
+
+    public void RunShooterForward()
     {
         shooterMotor.set(-1 * intakeSpeed);
         shooterMotorBack.set(-1 * shooterSpeed);
+    }
+
+    public void RunShooterBackward()
+    {
+        shooterMotor.set(intakeSpeed);
+        shooterMotorBack.set(shooterSpeed);
     }
 
     public void StopMotors()

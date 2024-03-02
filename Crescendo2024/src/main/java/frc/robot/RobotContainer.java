@@ -68,14 +68,31 @@ public class RobotContainer {
 
 
 
-    //Run Launcher Motor on (A) push
-    m_driverController.a().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunShooter(), m_ShooterDriveSubsystem));
 
-    //Run Intake Motor on (X) push
-    m_driverController.x().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunIntake(), m_ShooterDriveSubsystem));
+    //Run Intake Motor at 20% on (Y) push
+    m_driverController.y().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunIntake20(), m_ShooterDriveSubsystem));
 
-    //Stop all Motors on (B) push
-    m_driverController.b().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.StopMotors(), m_ShooterDriveSubsystem));
+    //Run Intake Motor at 40% on (B) push
+    m_driverController.b().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunIntake40(), m_ShooterDriveSubsystem));
+
+    //Run Intake Motor at 60% on (A) push
+    m_driverController.a().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunIntake60(), m_ShooterDriveSubsystem));
+
+    //Run Intake Motor at 80% on (X) push
+    m_driverController.x().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunIntake80(), m_ShooterDriveSubsystem));
+
+    //Run Intake Motor on (Right Button) push
+    m_driverController.rightBumper().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunShooterForward(), m_ShooterDriveSubsystem));   
+
+    //Run Intake Motor on (Left Button) push
+    m_driverController.leftBumper().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.RunShooterBackward(), m_ShooterDriveSubsystem));   
+
+    //Stop all Motors on (Left Trigger) push
+    m_driverController.leftTrigger().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.StopMotors(), m_ShooterDriveSubsystem));
+
+    //Stop all Motors on (Right Trigger) push
+    m_driverController.rightTrigger().onTrue(Commands.runOnce(() -> m_ShooterDriveSubsystem.StopMotors(), m_ShooterDriveSubsystem));
+
 
   }
 
