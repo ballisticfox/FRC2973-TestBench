@@ -8,10 +8,12 @@ public class ShooterDriveSubsystem extends SubsystemBase
     private PWMSparkMax shooterMotorBack;
     private PWMSparkMax shooterMotor;
     private PWMSparkMax rollerMotor;
+    private PWMSparkMax inTakeLiftMotor;
 
     private final int shooterMotorBackChannel = 7;
     private final int shooterMotorChannel = 8;
     private final int rollerMotorChannel = 9;
+    private final int inTakeLiftMotorChannel = 2;
 
     private double intakeSpeed = 1;
     private double shooterSpeed = 1;
@@ -21,24 +23,10 @@ public class ShooterDriveSubsystem extends SubsystemBase
         shooterMotor = new PWMSparkMax(shooterMotorChannel);
         shooterMotorBack = new PWMSparkMax(shooterMotorBackChannel);
         rollerMotor = new PWMSparkMax(rollerMotorChannel);
-    }
-
-    public void RunIntake20()
-    {
-        rollerMotor.set(intakeSpeed * 0.2);
-    }
-
-    public void RunIntake40()
-    {
-        rollerMotor.set(intakeSpeed * 0.4);
-    }
-
-    public void RunIntake60()
-    {
-        rollerMotor.set(intakeSpeed * 0.6);
+        //inTakeLiftMotor = new PWMSparkMax(inTakeLiftMotorChannel);
     }
     
-    public void RunIntake80()
+    public void RunIntake()
     {
         rollerMotor.set(intakeSpeed * 0.8);
     }
